@@ -49,7 +49,7 @@ task :docs do
   #files = (Dir["elibs/*.erl"] - ["elibs/json.erl"]).sort.map { |x| "\'../" + x + "\'"}.join(" ")
   #sh %|cd doc && erl -noshell -run edoc_run files #{files}|
   files = Dir["elibs/*.erl"].map { |x| "'../" + x + "'"}.join " "
-  sh %|cd doc && erl -noshell -s init stop -run edoc files #{files}|
+  sh %|mkdir -p doc && cd doc && erl -noshell -s init stop -run edoc files #{files}|
 end
 
 task :build_deps => [:build_eunit]
